@@ -1,0 +1,28 @@
+{% extends 'movies/base.html' %}
+{% block main %}
+<table class="table">
+  <thead>
+    <tr class="text-danger">
+        <td>Id</td>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Rate</td>
+        <td> Production date</td>
+        <td> Category</td>
+        <td> Cast</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>{{movie.id}}</td>
+        <td>{{movie.name }}</td>
+        <td>{{movie.description  }}</td>
+        <td>{{movie.rate }}</td>
+        <td>{{movie.production_date }}</td>
+        <td>{{movie.category }}</td>
+        <td>{{movie.cast }}</td>
+    </tr>
+      </tbody>
+</table>
+<a class="btn btn-dark" href="{% url 'index' %}">Back to Movies</a>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'movies/base.html' %}
+{% block main %}
+<h4>Movies</h4>
+<a class="btn btn-secondary" href="{% url 'post' %}">Add Movie</a>
+<table class="table">
+  <thead>
+    <tr class="text-danger">
+        <td>Id</td>
+    <td>Name</td>
+    <td>Description</td>
+    <td>Rate</td>
+       <td> Production date</td>
+        <td> Category</td>
+        <td> Cast</td>
+    </tr>
+  </thead>
+  <tbody>
+  {% for movie in movies %}
+    <tr>
+        <td>{{movie.id}}</td>
+        <td>{{movie.name }}</td>
+        <td>{{movie.description | truncatewords:4 }}</td>
+        <td>{{movie.rate }}</td>
+        <td>{{movie.production_date }}</td>
+        <td>{{movie.category }}</td>
+        <td>{{movie.cast }}</td>
+         <td>
+             <a class="btn btn-info" href="{% url 'get'  movie.id %}">View</a>
+             <a class="btn btn-secondary" href="{% url 'put'  movie.id %}">Update</a>
+             <a class="btn btn-danger" href="{% url 'delete'  movie.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+  <tr>
+      <td> Sorry, No movies left. </td>
+  </tr>
+  {% endfor %}
+      </tbody>
+</table>
+{% endblock %}
