@@ -1,29 +1,39 @@
-{% extends 'movies/base.html' %}
+{% extends 'main/base.html' %}
 {% block main %}
 <h4>Movies</h4>
-<a class="btn btn-secondary" href="{% url 'post' %}">Add Movie</a>
 <table class="table">
   <thead>
     <tr class="text-danger">
-        <td>Id</td>
     <td>Name</td>
     <td>Description</td>
     <td>Rate</td>
+        <td>Likes</td>
        <td> Production date</td>
         <td> Category</td>
         <td> Cast</td>
+        <td> Actions</td>
     </tr>
   </thead>
   <tbody>
   {% for movie in movies %}
     <tr>
-        <td>{{movie.id}}</td>
         <td>{{movie.name }}</td>
         <td>{{movie.description | truncatewords:4 }}</td>
         <td>{{movie.rate }}</td>
+        <td>{{movie.likes }}</td>
         <td>{{movie.production_date }}</td>
-        <td>{{movie.category }}</td>
-        <td>{{movie.cast }}</td>
+         <td>
+            <ul>{% for category in movie.categories.all %}
+               <li>{{category.type}}</li>
+            {% endfor %}
+            </ul>
+        </td>
+        <td>
+            <ul>{% for actor in movie.actors.all %}
+               <li>{{actor.name}}</li>
+            {% endfor %}
+            </ul>
+        </td>
          <td>
              <a class="btn btn-info" href="{% url 'get'  movie.id %}">View</a>
              <a class="btn btn-secondary" href="{% url 'put'  movie.id %}">Update</a>
@@ -37,4 +47,5 @@
   {% endfor %}
       </tbody>
 </table>
+<a class="btn btn-secondary" href="{% url 'post' %}">Add Movie</a>
 {% endblock %}

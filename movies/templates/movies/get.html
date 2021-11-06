@@ -1,26 +1,51 @@
-{% extends 'movies/base.html' %}
+{% extends 'main/base.html' %}
 {% block main %}
 <table class="table">
   <thead>
     <tr class="text-danger">
         <td>Id</td>
         <td>Name</td>
+        <td>Poster </td>
         <td>Description</td>
         <td>Rate</td>
-        <td> Production date</td>
-        <td> Category</td>
-        <td> Cast</td>
+        <td>Likes</td>
+        <td>Production date</td>
+        <td>Code</td>
+        <td>Category</td>
+        <td>Cast</td>
+        <td>Review </td>
+
     </tr>
   </thead>
   <tbody>
     <tr>
         <td>{{movie.id}}</td>
         <td>{{movie.name }}</td>
+         <td><img src="{{movie.poster.url}}"  style="width: 300px; height: auto;" alt="Image"></td>
         <td>{{movie.description  }}</td>
         <td>{{movie.rate }}</td>
+        <td>{{movie.likes }}</td>
         <td>{{movie.production_date }}</td>
-        <td>{{movie.category }}</td>
-        <td>{{movie.cast }}</td>
+        <td>{{movie.code }}</td>
+        <td>
+            <ul>{% for category in movie.categories.all %}
+               <li>{{category.type}}</li>
+            {% endfor %}
+            </ul>
+        </td>
+        <td>
+            <ul>{% for actor in movie.actors.all %}
+               <li>{{actor.name}}</li>
+            {% endfor %}
+            </ul>
+        </td>
+        <td>
+            <ul>{% for review in movie.review_set.all %}
+               <li>{{review.comment}}</li>
+            {% endfor %}
+            </ul>
+        </td>
+
     </tr>
       </tbody>
 </table>

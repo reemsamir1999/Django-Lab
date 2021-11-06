@@ -1,7 +1,7 @@
-{% extends 'movies/base.html' %}
+{% extends 'main/base.html' %}
 {% block main %}
 <div style="margin: 0 auto; " class="col-md-4 col-md-offset-4">
-            <form method="post" action="{% url 'post' %}" >
+            <form method="post" action="{% url 'post' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{form.as_p}}
                 <button type="submit" class="btn btn-primary">Submit</button>

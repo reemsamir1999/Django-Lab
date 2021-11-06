@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todo',
-    'movies',
+    'movies.apps.MoviesConfig',
+    'accounts',
+
 ]
 
 MIDDLEWARE = [
@@ -58,7 +60,7 @@ ROOT_URLCONF = 'App.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'App\main_templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,7 +131,19 @@ STATIC_ROOT = 'C:\DjangoApp\StaticRoot'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "App\main_static"),
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'C:\DjangoApp\MediaRoot'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/movies/'
+LOGOUT_REDIRECT_URL = '/movies/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'testestest382@gmail.com'
+EMAIL_HOST_PASSWORD = 'test1234%'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
